@@ -12,7 +12,7 @@ class Solution {
         return res;
     }
     private static boolean isCycle(int source,List<List<Integer>> adj,boolean[] visit){
-       
+        
         visit[source]=true;
         
         for(Integer it:adj.get(source)){
