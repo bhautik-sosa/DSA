@@ -2,7 +2,7 @@
 class Node
 {
 	Node next;
-	int data;
+	int data; 
 	Node(int d)
 	{
 		data = d;
