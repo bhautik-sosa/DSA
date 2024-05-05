@@ -1,4 +1,3 @@
-
 /*
 
 class Node{
@@ -9,7 +8,6 @@ class Node{
         left=right=null;
     }
 }*/
-
 
 class Solution
 {
