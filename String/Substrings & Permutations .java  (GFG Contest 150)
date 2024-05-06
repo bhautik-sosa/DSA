@@ -1,0 +1,40 @@
+
+class Solution {
+    public static ArrayList<Integer> substringsAndPermutations(int n, int m, String s,
+                                                               String[] arr) {
+        // code here
+        HashMap<Character, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!map.containsKey(c)) {
+                ArrayList<Integer> temp = new ArrayList<>();
+                temp.add(i);
+                map.put(c, temp);
+            } else {
+                map.get(c).add(i);
+            }
+        }
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        for (String str : arr) {
+            HashMap<Character, Integer> freq = new HashMap<>();
+            for (char c : str.toCharArray()) {
+                freq.put(c, freq.getOrDefault(c, 0) + 1);
+            }
+            
+            int x = 0;
+            for (char c : str.toCharArray()) {
+                if (!map.containsKey(c) || freq.get(c) > map.get(c).size()) {
+                    x = -1;
+                    break;
+                } else {
+                    x = Math.max(x, map.get(c).get(freq.get(c) - 1));
+                }
+            }
+            ans.add(x == -1 ? -1 : x + 1);
+        }
+        
+        return ans;
+    }
+}
