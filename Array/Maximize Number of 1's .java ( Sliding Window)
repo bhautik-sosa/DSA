@@ -1,0 +1,29 @@
+
+class Solve {
+    // m is maximum of number zeroes allowed to flip
+    int findZeroes(int arr[], int n, int m) {
+        // code here
+        
+        int l = 0 , r = 0;
+        int len = 0;
+        int maxLen = 0;
+        int count_0 = 0;
+        
+        while( r < arr.length ){
+            
+            while( count_0 > m && l <= r ) {
+                if( arr[l] == 0 ) count_0--;
+                l++;
+            }
+            
+            if( arr[r] == 0 ) count_0++;
+            if( count_0 <= m ){
+                len = r - l + 1;
+                maxLen = Math.max( maxLen, len);
+            }
+            r++;
+        }
+        
+        return maxLen;
+    }
+}
