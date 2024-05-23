@@ -1,0 +1,28 @@
+
+class Solution {
+    public static int totalFruits(int N, int[] fruits) {
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        int l = 0 , r = 0;
+        int len = 0 , maxLen = 0;
+        
+        while( r < N ){
+            
+            map.put( fruits[r] , map.getOrDefault( fruits[r] , 0)+1 );
+            
+            while( map.size() > 2 ) {
+                
+                map.put( fruits[l] , map.getOrDefault( fruits[l] , 0)-1);
+                if( map.containsKey(fruits[l]) && map.get( fruits[l]) <= 0 ) map.remove( fruits[l]);
+                l++;
+            }
+            
+            len = r - l + 1;
+            maxLen = Math.max( maxLen, len );
+            r++;
+        }
+        
+        return maxLen;
+    }
+}
