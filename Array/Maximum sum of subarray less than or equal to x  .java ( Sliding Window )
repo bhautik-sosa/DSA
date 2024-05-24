@@ -1,0 +1,23 @@
+
+class Solution{
+    long findMaxSubarraySum(long arr[], int N,int X){
+        // Your code goes here
+        int sum = 0;
+        int l = 0 , r = 0;
+        int maxSum = 0;
+        
+        while( r < N){
+            sum += arr[r];
+            while( sum > X ) {
+                sum -= arr[l];
+                l++;
+            }
+            
+            maxSum = Math.max( maxSum , sum );
+            
+            r++;
+        }
+        
+        return maxSum;
+    }
+}
