@@ -1,0 +1,23 @@
+
+class Solution {
+    public static int countSubstring(String s) {
+        // code here
+        int n = s.length();
+        int[] seen = { -1 , -1 , -1};
+        int ans = 0;
+        
+        for( int i=0 ; i < n ; i++ ){
+            char c = s.charAt(i);
+            
+            seen[c-'a'] = i;
+            
+            if( seen[0] != -1 && seen[1] != -1 && seen[2] != -1 ){
+                
+                ans += ( 1 + Math.min( seen[0] , Math.min( seen[1] , seen[2]) ));
+            }
+        }
+        
+        return ans;
+    }
+}
+   
