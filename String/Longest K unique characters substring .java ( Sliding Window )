@@ -1,0 +1,32 @@
+
+class Solution {
+    public int longestkSubstr(String s, int k) {
+        // code here
+        HashMap<Character , Integer> map = new HashMap<>();
+        
+        int l =0 , r = 0 , len = 0 , maxLen = -1;
+        
+        while( r < s.length()){
+            char c = s.charAt(r);
+            map.put( c , map.getOrDefault(c , 0)+1);
+            
+            if( map.size() > k && l < r ){
+                char x = s.charAt(l);
+                map.put( x, map.get(x)-1);
+                
+                if( map.get(x) <= 0 ) map.remove(x);
+                
+                l++;
+            }
+            
+            if( map.size() == k ) {
+                len = r - l + 1;
+                maxLen = Math.max( maxLen , len );
+            }
+            
+            r++;
+        }
+        
+        return maxLen;
+    }
+}
