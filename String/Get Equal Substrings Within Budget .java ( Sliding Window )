@@ -1,0 +1,35 @@
+
+class Solution {
+    public int equalSubstring(String s, String t, int maxCost) {
+
+        int ans = 0;
+        int l = 0 , r = 0;
+        int cost = 0;
+
+        if( s.length() != t.length()) return 0;
+        
+        while ( r < s.length()){
+
+            char x = s.charAt(r);
+            char y = t.charAt(r);
+
+            cost +=  Math.abs((int) (x -y ));
+
+            if( cost > maxCost && l < r ){
+                char p = s.charAt(l);
+                char q = t.charAt(l);
+                cost -= Math.abs((int) (q-p));
+                l++;
+            }
+
+            if( cost <= maxCost ){
+                ans = Math.max( ans , (r-l+1));
+            }
+            System.out.println(cost);
+            System.out.println(ans);
+            r++;
+        }
+
+        return ans;
+    }
+}
