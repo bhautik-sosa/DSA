@@ -1,0 +1,29 @@
+
+class Solution{
+    int numberOfSubarrays(int arr[], int N, int target){
+        // code here
+        
+        return helper(arr , target) - helper(arr , target-1);
+    }
+    
+    public int helper( int[] arr , int goal ) {
+        
+        int l = 0 , r = 0;
+        int sum = 0;
+        int ans = 0;
+        
+        while( r < arr.length ){
+            
+            sum += arr[r];
+            while( sum > goal ) {
+                sum -= arr[l];
+                l++;
+            }
+            
+            ans += r - l + 1;
+            
+            r++;
+        }
+        return ans;
+    }
+}
