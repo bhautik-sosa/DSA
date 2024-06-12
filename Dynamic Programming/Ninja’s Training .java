@@ -62,7 +62,7 @@ public class Solution {
     }
 
 
-    // Memorization :-
+    // Memoization :-
         public static int helper( int day , int last , int[][] points , int[][] dp){
 
             if( day == 0 ){
