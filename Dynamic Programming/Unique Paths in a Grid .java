@@ -38,7 +38,7 @@ class Solution {
             
     }
     
-    // Memorization :- 
+    // Memoization :- 
     
         static int helper( int row , int col , int[][] grid , int[][] dp ) {
             
