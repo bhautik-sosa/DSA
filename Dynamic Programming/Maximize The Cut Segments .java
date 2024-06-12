@@ -11,7 +11,7 @@ class Solution{
        return ans < 0 ? 0 : ans;
     }
     
-    // Memorization :- 
+    // Memoization :- 
     
         public int helper( int n , int x , int y , int z, int[] dp){
             
