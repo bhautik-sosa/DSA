@@ -60,7 +60,7 @@ class Solution {
             return prev[m-1];
     }
 
-    // Memorization :-
+    // Memoization :-
 
         public int helper( int row, int col , int[][] grid , int[][] dp){
 
