@@ -12,23 +12,47 @@ class Solution{
 	   
 	   // Tabulation :-
 	    
+	       // for( int i=0 ; i <= V ; i++ ){
+	       //     if( i % coins[0] == 0) dp[0][i] = i/coins[0];
+	       //     else dp[0][i] = (int) 1e8;
+	       // }
+	        
+	       // for( int i=1 ; i < M ; i++ ){
+	       //     for( int j = 0 ; j <= V ; j++){
+	                
+	       //         int notTake = 0 + dp[i-1][j];
+        //     	    int take = (int) 1e8;
+        //     	    if( coins[i] <= j ) take = 1 + dp[i][j-coins[i]];
+            	    
+        //     	    dp[i][j] = Math.min( notTake , take);
+	       //     }
+	       // }
+	       // return dp[M-1][V] == (int)1e8 ? -1 : dp[M-1][V];
+	        
+	    // Space Optimized :-
+	        
+	        int[] prev = new int[V+1];
+	        
 	        for( int i=0 ; i <= V ; i++ ){
-	            if( i % coins[0] == 0) dp[0][i] = i/coins[0];
-	            else dp[0][i] = (int) 1e8;
+	            if( i % coins[0] == 0) prev[i] = i/coins[0];
+	            else prev[i] = (int) 1e8;
 	        }
 	        
 	        for( int i=1 ; i < M ; i++ ){
+	            
+	            int[] cur = new int[V+1];
+	            
 	            for( int j = 0 ; j <= V ; j++){
 	                
-	                int notTake = 0 + dp[i-1][j];
+	                int notTake = 0 + prev[j];
             	    int take = (int) 1e8;
-            	    if( coins[i] <= j ) take = 1 + dp[i][j-coins[i]];
+            	    if( coins[i] <= j ) take = 1 + cur[j-coins[i]];
             	    
-            	    dp[i][j] = Math.min( notTake , take);
+            	    cur[j] = Math.min( notTake , take);
 	            }
+	            prev = cur;
 	        }
-	        return dp[M-1][V] == (int)1e8 ? -1 : dp[M-1][V];
-	        
+	        return prev[V] == (int)1e8 ? -1 : prev[V];
 	} 
 	
 	
